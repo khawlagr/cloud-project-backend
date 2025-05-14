@@ -14,10 +14,10 @@ app.use(express.json());
 
 // Database connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'databasetest.cysrpetj7pax.us-east-1.rds.amazonaws.com',
+  host: process.env.DB_HOST || 'mydatabase.cup0yls5vjrl.us-east-1.rds.amazonaws.com',
   user: process.env.DB_USER || 'admin',
-  password: process.env.DB_PASSWORD || 'alaadmin',
-  database: process.env.DB_NAME || 'databasetest'
+  password: process.env.DB_PASSWORD || '-admin123admin-',
+  database: process.env.DB_NAME || 'mydatabase'
 });
 
 db.connect((err) => {
@@ -87,10 +87,6 @@ app.get('/server-info', async (req, res) => {
     console.error('Error fetching server info:', error);
     res.status(500).json({ error: 'Failed to get server information' });
   }
-});
-
-app.get('/', (req, res) => {
-  res.status(200).json('Hello from Backend app!');
 });
 
 app.get('/', (req, res) => {
@@ -189,7 +185,9 @@ app.delete('/api/users/:id', (req, res) => {
   });
 });
 
-// Start server
+
+
+//Start server
 const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
