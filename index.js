@@ -14,10 +14,10 @@ app.use(express.json());
 
 // Database connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'mydatabase.cup0yls5vjrl.us-east-1.rds.amazonaws.com',
+  host: process.env.DB_HOST || 'mysqldatabase.cup0yls5vjrl.us-east-1.rds.amazonaws.com',
   user: process.env.DB_USER || 'admin',
-  password: process.env.DB_PASSWORD || '-admin123admin-',
-  database: process.env.DB_NAME || 'mydatabase'
+  password: process.env.DB_PASSWORD || '*mysqldatabase123*',
+  database: process.env.DB_NAME || 'mysqldatabase'
 });
 
 db.connect((err) => {
@@ -93,6 +93,21 @@ app.get('/', (req, res) => {
   res.status(200).json('Hello from Backend app!');
 });
 
+/*****/
+ app.get('/users', (req, res) => {
+  db.query('SELECT * FROM users', (err, results) => {
+    if (err) {
+      console.error('Error fetching users:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.json(results);
+  });
+});
+
+ /****/
+
+ /*
+
 app.get('/api/users', (req, res) => {
   const query = 'SELECT * FROM users';
 
@@ -105,7 +120,7 @@ app.get('/api/users', (req, res) => {
     res.json(results);
   });
 });
-
+*/
 app.get('/api/users/:id', (req, res) => {
   const userId = req.params.id;
   const query = 'SELECT * FROM users WHERE id = ?';
