@@ -14,10 +14,10 @@ app.use(express.json());
 
 // Database connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'mysqldatabase.cup0yls5vjrl.us-east-1.rds.amazonaws.com',
+  host: process.env.DB_HOST || 'mysqldb.cup0yls5vjrl.us-east-1.rds.amazonaws.com',
   user: process.env.DB_USER || 'admin',
   password: process.env.DB_PASSWORD || '*mysqldatabase123*',
-  database: process.env.DB_NAME || 'mysqldatabase'
+  database: process.env.DB_NAME || 'mysqldb'
 });
 
 db.connect((err) => {
